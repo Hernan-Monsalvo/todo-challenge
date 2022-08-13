@@ -1,0 +1,1146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Invera-Todo</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.configure({
+            tabReplace: '    ',
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <style>body {
+    position: relative;
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+h1, h2, h3, h4 {
+    color: #2b2b2b;
+}
+
+h2:after {
+    content: ' ';
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    display: none;
+    position: absolute;
+    margin-left: 8px;
+}
+
+h1:hover a, h2:hover a, h3:hover a, h4:hover a, h5:hover a, h6:hover a {
+    color: #a5a5a5;
+    display: initial;
+}
+
+.nav.nav-tabs > li > a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tab-content {
+    padding-top: 8px;
+}
+
+.table {
+    margin-bottom: 8px;
+}
+
+pre {
+    border-radius: 0px;
+    border: none;
+}
+
+pre code {
+    margin: -9.5px;
+}
+
+.request {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.response-text-sample {
+    padding: 0px !important;
+}
+
+.response-text-sample pre {
+    margin-bottom: 0px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #2b2b2b;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper ul {
+    width: 250px;
+}
+
+#sidebar-wrapper ul li {
+    margin-right: 10px;
+}
+
+#sidebar-wrapper ul li a:hover {
+    background: inherit;
+    text-decoration: none;
+}
+
+#sidebar-wrapper ul li a {
+    display: block;
+    color: #ECF0F1;
+    padding: 6px 15px;
+}
+
+#sidebar-wrapper ul li ul {
+    padding-left: 25px;
+}
+
+#sidebar-wrapper ul li ul li a {
+    padding: 1px 0px;
+}
+
+#sidebar-wrapper ul li a:hover,
+#sidebar-wrapper ul li a:focus {
+    color: #e0c46c;
+    border-right: solid 1px #e0c46c;
+}
+
+#sidebar-wrapper ul li.active > a {
+    color: #e0c46c;
+    border-right: solid 3px #e0c46c;
+}
+
+#sidebar-wrapper ul li:not(.active) ul {
+    display: none;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px 15px 15px 250px;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".scrollspy">
+<div id="sidebar-wrapper">
+    <div class="scrollspy">
+    <ul id="main-menu" data-spy="affix" class="nav">
+        <li>
+            <a href="#doc-general-notes">General notes</a>
+        </li>
+        
+        <li>
+            <a href="#doc-api-detail">API detail</a>
+        </li>
+        
+        
+        
+        <li>
+            <a href="#folder-auth">Auth</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-auth-register">register</a>
+                </li>
+                
+                <li>
+                    <a href="#request-auth-login">login</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-tasks">Tasks</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-tasks-new-task">new task</a>
+                </li>
+                
+                <li>
+                    <a href="#request-tasks-task-list">task list</a>
+                </li>
+                
+                <li>
+                    <a href="#request-tasks-task-update">task update</a>
+                </li>
+                
+                <li>
+                    <a href="#request-tasks-task-detail">task detail</a>
+                </li>
+                
+                <li>
+                    <a href="#request-tasks-task-delete">task delete</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+    </ul>
+</div>
+
+</div>
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Invera-Todo</h1>
+
+                <h2 id="doc-general-notes">
+                    General notes
+                    <a href="#doc-general-notes"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+                
+
+                <h2 id="doc-api-detail">
+                    API detail
+                    <a href="#doc-api-detail"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-auth">
+                        Auth
+                        <a href="#folder-auth"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-auth-register">
+                            register
+                            <a href="#request-auth-register"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-auth-register-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-auth-register-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-auth-register-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "username": "hernan",
+    "password": "123456"
+}' "{{url}}/auth/register"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-auth-register-example-http">
+                                    <pre><code class="hljs http">POST %7B%7Burl%7D%7D/auth/register HTTP/1.1
+Host: 
+
+{
+    "username": "hernan",
+    "password": "123456"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-auth-register-responses-d6b349ec-56a5-4b58-aac0-79d7a1356625" data-toggle="tab">
+                                        
+                                            200 - OK
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-auth-register-responses-ee4d229f-e173-416a-9e20-ead968f999ed" data-toggle="tab">
+                                        
+                                            400 - User already exists
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-auth-register-responses-d6b349ec-56a5-4b58-aac0-79d7a1356625">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>201 Created</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 21:53:19 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept, Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>POST, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>0</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-auth-register-responses-ee4d229f-e173-416a-9e20-ead968f999ed">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:00:15 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept, Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>POST, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>58</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "username": [
+        "A user with that username already exists."
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-auth-login">
+                            login
+                            <a href="#request-auth-login"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-auth-login-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-auth-login-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-auth-login-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "username": "hernan",
+    "password": "123456"
+}' "{{url}}/auth/login"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-auth-login-example-http">
+                                    <pre><code class="hljs http">POST %7B%7Burl%7D%7D/auth/login HTTP/1.1
+Host: 
+
+{
+    "username": "hernan",
+    "password": "123456"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-auth-login-responses-297e32ff-c4eb-481e-a789-5ea7a08849bd" data-toggle="tab">
+                                        
+                                            200 - OK
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-auth-login-responses-d38138ac-8ea9-42ae-8bf2-085c1bbab9fd" data-toggle="tab">
+                                        
+                                            400 - wrong user/password
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-auth-login-responses-297e32ff-c4eb-481e-a789-5ea7a08849bd">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:00:40 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>POST, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>52</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Origin</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "token": "a8b7acf17c11b8589f6a272f420fb4c77d1c9afc"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-auth-login-responses-d38138ac-8ea9-42ae-8bf2-085c1bbab9fd">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:01:06 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>POST, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>68</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Origin</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "non_field_errors": [
+        "Unable to log in with provided credentials."
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-tasks">
+                        Tasks
+                        <a href="#folder-tasks"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-tasks-new-task">
+                            new task
+                            <a href="#request-tasks-new-task"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-tasks-new-task-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-tasks-new-task-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-tasks-new-task-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -H "Authorization: Token {{userToken}}" -d '{
+    "title": "programar",
+    "description": "programar el challenge de invera"
+}' "{{url}}/todo/tasks"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-tasks-new-task-example-http">
+                                    <pre><code class="hljs http">POST %7B%7Burl%7D%7D/todo/tasks HTTP/1.1
+Host: 
+Authorization: Token {{userToken}}
+
+{
+    "title": "programar",
+    "description": "programar el challenge de invera"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-tasks-new-task-responses-f782721d-b00c-4025-8ca4-ff555f8400aa" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-tasks-new-task-responses-f782721d-b00c-4025-8ca4-ff555f8400aa">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>201 Created</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:02:44 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept, Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>GET, POST, HEAD, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>130</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "id": 1,
+    "title": "programar",
+    "description": "programar el challenge de invera",
+    "completed": false,
+    "created_at": "2022-08-13 22:02:44"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-tasks-task-list">
+                            task list
+                            <a href="#request-tasks-task-list"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-tasks-task-list-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-tasks-task-list-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-tasks-task-list-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Authorization: Token {{userToken}}" "{{url}}/todo/tasks"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-tasks-task-list-example-http">
+                                    <pre><code class="hljs http">GET %7B%7Burl%7D%7D/todo/tasks HTTP/1.1
+Host: 
+Authorization: Token {{userToken}}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-tasks-task-list-responses-06936533-8e4a-4c72-a6cd-ff1fcf7eb6ed" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-tasks-task-list-responses-06936533-8e4a-4c72-a6cd-ff1fcf7eb6ed">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:04:19 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept, Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>GET, POST, HEAD, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>289</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "id": 1,
+        "title": "programar",
+        "description": "programar el challenge de invera",
+        "completed": true,
+        "created_at": "2022-08-13 22:02:44"
+    },
+    {
+        "id": 2,
+        "title": "dockerizar",
+        "description": "crear imagen del challenge de invera y pushear a dockerhub",
+        "completed": false,
+        "created_at": "2022-08-13 22:03:48"
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-tasks-task-update">
+                            task update
+                            <a href="#request-tasks-task-update"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-tasks-task-update-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-tasks-task-update-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-tasks-task-update-example-curl">
+                                    <pre><code class="hljs curl">curl -X PATCH -H "Authorization: Token {{userToken}}" -d '{
+    "completed": true
+}' "{{url}}/todo/tasks/1"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-tasks-task-update-example-http">
+                                    <pre><code class="hljs http">PATCH %7B%7Burl%7D%7D/todo/tasks/1 HTTP/1.1
+Host: 
+Authorization: Token {{userToken}}
+
+{
+    "completed": true
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-tasks-task-update-responses-0c6ff918-75e0-4937-9a00-4b2888177e41" data-toggle="tab">
+                                        
+                                            200 - OK
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-tasks-task-update-responses-1e89ebe5-727a-455b-b3da-6c69d63b45c2" data-toggle="tab">
+                                        
+                                            404 - NOT FOUND
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-tasks-task-update-responses-0c6ff918-75e0-4937-9a00-4b2888177e41">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:04:07 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept, Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>GET, PUT, PATCH, DELETE, HEAD, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>129</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "id": 1,
+    "title": "programar",
+    "description": "programar el challenge de invera",
+    "completed": true,
+    "created_at": "2022-08-13 22:02:44"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-tasks-task-update-responses-1e89ebe5-727a-455b-b3da-6c69d63b45c2">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:06:13 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept, Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>GET, PUT, PATCH, DELETE, HEAD, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>23</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "detail": "Not found."
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-tasks-task-detail">
+                            task detail
+                            <a href="#request-tasks-task-detail"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-tasks-task-detail-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-tasks-task-detail-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-tasks-task-detail-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET -H "Authorization: Token {{userToken}}" "{{url}}/todo/tasks/1"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-tasks-task-detail-example-http">
+                                    <pre><code class="hljs http">GET %7B%7Burl%7D%7D/todo/tasks/1 HTTP/1.1
+Host: 
+Authorization: Token {{userToken}}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-tasks-task-detail-responses-a06029f1-8ae4-4620-abca-7d8daad3285a" data-toggle="tab">
+                                        
+                                            200 - OK
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-tasks-task-detail-responses-7288a896-04ef-4b82-85fd-933f58147523" data-toggle="tab">
+                                        
+                                            404 - NOT FOUND
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-tasks-task-detail-responses-a06029f1-8ae4-4620-abca-7d8daad3285a">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:04:42 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept, Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>GET, PUT, PATCH, DELETE, HEAD, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>129</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "id": 1,
+    "title": "programar",
+    "description": "programar el challenge de invera",
+    "completed": true,
+    "created_at": "2022-08-13 22:02:44"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-tasks-task-detail-responses-7288a896-04ef-4b82-85fd-933f58147523">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:04:54 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept, Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>GET, PUT, PATCH, DELETE, HEAD, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>23</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "detail": "Not found."
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-tasks-task-delete">
+                            task delete
+                            <a href="#request-tasks-task-delete"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-tasks-task-delete-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-tasks-task-delete-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-tasks-task-delete-example-curl">
+                                    <pre><code class="hljs curl">curl -X DELETE -H "Authorization: Token {{userToken}}" "{{url}}/todo/tasks/1"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-tasks-task-delete-example-http">
+                                    <pre><code class="hljs http">DELETE %7B%7Burl%7D%7D/todo/tasks/1 HTTP/1.1
+Host: 
+Authorization: Token {{userToken}}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-tasks-task-delete-responses-2a33d5c6-1eff-427f-af30-89169af9fb5f" data-toggle="tab">
+                                        
+                                            204 - OK
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-tasks-task-delete-responses-cd9a63db-0b95-4c10-a7b1-e09a1619d652" data-toggle="tab">
+                                        
+                                            404 - NOT FOUND
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-tasks-task-delete-responses-2a33d5c6-1eff-427f-af30-89169af9fb5f">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>204 No Content</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:05:13 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept, Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>GET, PUT, PATCH, DELETE, HEAD, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>0</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-tasks-task-delete-responses-cd9a63db-0b95-4c10-a7b1-e09a1619d652">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Server</th><td>gunicorn</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Date</th><td>Sat, 13 Aug 2022 22:05:28 GMT</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Connection</th><td>close</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Vary</th><td>Accept, Origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Allow</th><td>GET, PUT, PATCH, DELETE, HEAD, OPTIONS</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Frame-Options</th><td>DENY</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Length</th><td>23</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">X-Content-Type-Options</th><td>nosniff</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Referrer-Policy</th><td>same-origin</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Cross-Origin-Opener-Policy</th><td>same-origin</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "detail": "Not found."
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("table:not(.table)").addClass('table table-bordered');
+    });
+</script>
+</body>
+</html>
