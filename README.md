@@ -16,9 +16,9 @@ para levantar la aplicacion hay dos opciones:
 ## Endpoints
 
 - ### Register (post)
- url: "localhost:8000/auth/register"
- Crea un usuario.
- recibe: "username" y "password"
+ url: "localhost:8000/auth/register"  
+ Crea un usuario.  
+ recibe: "username" y "password"  
 
 - ### Login  (post)
  url: "localhost:8000/auth/register"
