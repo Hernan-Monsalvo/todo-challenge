@@ -21,38 +21,38 @@ para levantar la aplicacion hay dos opciones:
  recibe: "username" y "password"  
 
 - ### Login  (post)
- url: "localhost:8000/auth/register"
- Authentica un usuario.
- recibe: "username" y "password"
- devuelve: "token"
+ url: "localhost:8000/auth/register"  
+ Authentica un usuario.  
+ recibe: "username" y "password"  
+ devuelve: "token"  
 
 - ### Create Task  (post)
- url: "localhost:8000/todo/tasks"
- Auth header: "Authorization: Token {{userToken}}"
- Crea una tarea.
- recibe: "title" y "description"
- devuelve: tarea creada
+ url: "localhost:8000/todo/tasks"  
+ Auth header: "Authorization: Token {{userToken}}"  
+ Crea una tarea.  
+ recibe: "title" y "description"  
+ devuelve: tarea creada  
 
 - ### Task List  (get)
- url: "localhost:8000/todo/tasks"
- Auth header: "Authorization: Token {{userToken}}"
- Lista de tareas.
+ url: "localhost:8000/todo/tasks"  
+ Auth header: "Authorization: Token {{userToken}}"  
+ Lista de tareas.  
 
 - ### Task Detail  (get)
- url: "localhost:8000/todo/tasks/{{task_id}}"
- Auth header: "Authorization: Token {{userToken}}"
- Detalle de tarea.
+ url: "localhost:8000/todo/tasks/{{task_id}}"  
+ Auth header: "Authorization: Token {{userToken}}"  
+ Detalle de tarea.  
 
 - ### Delete Task  (delete)
- url: "localhost:8000/todo/tasks/{{task_id}}"
- Auth header: "Authorization: Token {{userToken}}"
- Elimina una tarea.
+ url: "localhost:8000/todo/tasks/{{task_id}}"  
+ Auth header: "Authorization: Token {{userToken}}"  
+ Elimina una tarea.  
 
 - ### Update Task  (patch)
- url: "localhost:8000/todo/tasks/{{task_id}}"
- Auth header: "Authorization: Token {{userToken}}"
- Modifica una tarea.
- campos modificables: "title", "description", "completed"
+ url: "localhost:8000/todo/tasks/{{task_id}}"  
+ Auth header: "Authorization: Token {{userToken}}"  
+ Modifica una tarea.  
+ campos modificables: "title", "description", "completed"  
 
 
-**documentacion mas detallada** con ejemplos se encuentra en el archivo doc.html (generado por postman).
+**documentacion mas detallada** con ejemplos se encuentra en el archivo doc.html (generado por postman).  
