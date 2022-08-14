@@ -1,37 +1,58 @@
-# Invera ToDo-List Challenge (Python/Django Jr-SSr)
+# # Invera ToDo-List Challenge
 
-El propósito de esta prueba es conocer tu capacidad para crear una pequeña aplicación funcional en un límite de tiempo. A continuación, encontrarás las funciones, los requisitos y los puntos clave que debés tener en cuenta durante el desarrollo.
+## Descripcion de la app
 
-## Qué queremos que hagas:
+esta es una aplicacion desarollada en Django Rest Framework, la misma le permite al usuario crear tareas, modificarlas y eliminarlas. cuenta con un sistema de registro/login que le entrega al usuario un token para authenticarse en las llamadas a la API.
 
-- El Challenge consiste en crear una aplicación web sencilla que permita a los usuarios crear y mantener una lista de tareas.
-- La entrega del resultado será en un nuevo fork de este repo y deberás hacer una pequeña demo del funcionamiento y desarrollo del proyecto ante un super comité de las más grandes mentes maestras de Invera, o a un par de devs, lo que sea más fácil de conseguir.
-- Podes contactarnos en caso que tengas alguna consulta.
+## Levantar aplicacion
+para levantar la aplicacion hay dos opciones:
 
-## Objetivos:
+### Docker
+`docker run -p 8000:8000 hernanmonsalvo/django-todo:v1.0.0`
 
-El usuario de la aplicación tiene que ser capaz de:
+### Python
+`./start.sh`
 
-- Autenticarse
-- Crear una tarea
-- Eliminar una tarea
-- Marcar tareas como completadas
-- Poder ver una lista de todas las tareas existentes
-- Filtrar/buscar tareas por fecha de creación y/o por el contenido de la misma
+## Endpoints
 
-## Qué evaluamos:
+- ### Register (post)
+ url: "localhost:8000/auth/register"
+ Crea un usuario.
+ recibe: "username" y "password"
 
-- Desarrollo utilizando Python, Django. No es necesario crear un Front-End, pero sí es necesario tener una API que permita cumplir con los objetivos de arriba.
-- Uso de librerías y paquetes estandares que reduzcan la cantidad de código propio añadido.
-- Calidad y arquitectura de código. Facilidad de lectura y mantenimiento del código. Estándares seguidos.
-- [Bonus] Manejo de logs.
-- [Bonus] Creación de tests (unitarias y de integración)
-- [Bonus] Unificar la solución propuesta en una imagen de Docker por repositorio para poder ser ejecutada en cualquier ambiente (si aplica para full stack).
+- ### Login  (post)
+ url: "localhost:8000/auth/register"
+ Authentica un usuario.
+ recibe: "username" y "password"
+ devuelve: "token"
 
-## Requerimientos de entrega:
+- ### Create Task  (post)
+ url: "localhost:8000/todo/tasks"
+ Auth header: "Authorization: Token {{userToken}}"
+ Crea una tarea.
+ recibe: "title" y "description"
+ devuelve: tarea creada
 
-- Hacer un fork del proyecto y pushearlo en github. Puede ser privado.
-- La solución debe correr correctamente.
-- El Readme debe contener todas las instrucciones para poder levantar la aplicación, en caso de ser necesario, y explicar cómo se usa.
-- Disponibilidad para realizar una pequeña demo del proyecto al finalizar el challenge.
-- Tiempo para la entrega: Aproximadamente 7 días.
+- ### Task List  (get)
+ url: "localhost:8000/todo/tasks"
+ Auth header: "Authorization: Token {{userToken}}"
+ Lista de tareas.
+
+- ### Task Detail  (get)
+ url: "localhost:8000/todo/tasks/{{task_id}}"
+ Auth header: "Authorization: Token {{userToken}}"
+ Detalle de tarea.
+
+- ### Delete Task  (delete)
+ url: "localhost:8000/todo/tasks/{{task_id}}"
+ Auth header: "Authorization: Token {{userToken}}"
+ Elimina una tarea.
+
+- ### Update Task  (patch)
+ url: "localhost:8000/todo/tasks/{{task_id}}"
+ Auth header: "Authorization: Token {{userToken}}"
+ Modifica una tarea.
+ campos modificables: "title", "description", "completed"
+
+
+**documentacion mas detallada** con ejemplos se encuentra en el archivo doc.html (generado por postman).
